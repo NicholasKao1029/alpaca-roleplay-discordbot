@@ -9,9 +9,11 @@ intents.members = True
 class Chatbot:
     def __init__(self):
         self.message_history_limit = 5
-        self.tokenizer = LlamaTokenizer.from_pretrained("./alpaca/")
+        # set to model path
+        model = "../alpaca-discord/alpaca/gpt4-x-alpaca"
+        self.tokenizer = LlamaTokenizer.from_pretrained(model)
         self.model = LlamaForCausalLM.from_pretrained(
-            "alpaca",
+            model,
             load_in_8bit=True,
             torch_dtype=torch.float16,
             device_map="auto"
